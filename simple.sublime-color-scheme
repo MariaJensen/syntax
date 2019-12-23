@@ -1,0 +1,271 @@
+{
+	"name": "simple",
+	"variables": {
+		"background": "hsl(190, 25%, 15%)",
+		"foreground": "hsl(190, 25%, 85%)",
+		"caret": "hsl(190, 25%, 85%)",
+		"line_highlight": "hsl(190, 25%, 15%)",
+		"fold_marker": "yellow",
+		"gutter":"hsl(190, 25%, 15%)",
+		"gutter_foreground": "hsla(190, 100%, 100%, 0.3)",	
+		"selection": "hsl(190, 100%, 30%)",
+		"highlight": "hsl(190, 100%, 30%)",	
+		"guide": "hsla(190, 100%, 100%, 0.1)",
+		"error": "yellow",
+		"comment": "hsla(190, 100%, 100%, 0.4)", 
+		"SwitchStatement": "hsl(80, 60%, 50%)",
+		"TryStatement": "hsl(170, 100%, 50%)",
+		"BlockStatement": "hsl(0, 100%, 50%)",
+		"IfStatement": "hsl(215, 100%, 65%)", 
+		"ThrowStatement": "hsl(330, 100%, 50%)",
+		"DebuggerStatement": "hsl(270, 100%, 50%)", 
+		"LabelledStatement": "hsl(240, 100%, 70%)",
+		"ContinueStatement": "hsl(110, 50%, 30%)", 
+		"BreakStatement": "hsl(200, 50%, 50%)", 
+		"ReturnStatement": "hsl(255, 100%, 70%)",
+		"WhileStatement": "hsl(20, 100%, 60%)",
+		"ForStatement": "hsl(10, 100%, 60%)", 
+		"WithStatement": "hsl(330, 100%, 70%)",
+		"DoStatement": "hsl(40, 40%, 40%)"
+	},
+	"globals": { 
+		// MAIN
+			"background": "var(background)",
+			"foreground": "var(foreground)",	
+			"caret": "var(caret)",
+			"line_highlight": "var(line_highlight)",
+				// only used when the highlight_line setting is enabled
+			// "invisibles": "",
+			// "block_caret": "",
+		// ACCENTS 
+			"fold_marker": "var(fold_marker)",
+				// "misspelling": "",
+				// "minimap_border": "",
+					// only used when the draw_minimap_border is enabled
+					// note that the viewport is normally only visible on hover
+					// unless the always_show_minimap_viewport setting is enabled
+				// "accent": "",
+					// The default theme uses this to highlight modified tabs when 
+					// the highlight_modified_tabs setting is enabled
+		// CSS
+			// if using minihtml functionality
+			// "popup_css": "",
+			// "phantom_css": "",
+		// GUTTER
+			"gutter": "var(gutter)",
+			"gutter_foreground": "var(gutter_foreground)",
+		// DIFF
+			"line_diff_width": "5",
+		   		// The width of the diff lines, between 1 and 8 
+			// "line_diff_added": "var(caret)",
+			    // The color of diff markers for added lines 
+			// "line_diff_modified": "var(caret)",
+		 	    // The color of diff markers for modified lines 
+			// "line_diff_deleted": "var(caret)",
+				// The color of diff markers for deleted lines 
+		// SELECTION
+			"selection": "var(selection)",
+			// "selection_foreground": "white",
+			// "selection_border": "white",
+			// "selection_border_width": "0",
+			// "inactive_selection": "white",
+			// "inactive_selection_foreground": "white",
+			// "selection_corner_style": "square",
+				// round, cut or square
+			// "selection_corner_radius": "4",
+				// used when selection_corner_style is round or cut
+		// FIND
+			"highlight": "var(highlight)",
+			"find_highlight": "var(highlight)",
+			// "find_highlight_foreground": "white",
+		// GUIDES
+			// guides are controlled globally by the draw_indent_guides setting
+			"guide": "var(guide)",
+				// only used if the option draw_normal is present in the 
+				// setting indent_guide_options
+			// "active_guide": "var(caret)",
+				// only used if the option draw_active is present in the 
+			 	// setting indent_guide_options 
+			// "stack_guide": "var(gutter_foreground)",
+				// only used if the option draw_active is present in the 
+				// setting indent_guide_options
+		// BRACKETS 
+			// bracket matching is controlled globally by the 
+			// match_brackets setting
+			"bracket_options": "underline",
+				// accepts a space-separated list from the following: 
+				// underline, stippled_underline, squiggly_underline, 
+				// foreground, bold, italic
+			// "brackets_foreground": "var(caret)",
+			// "brackets_contents_options": "stippled_underline",
+					// accepts a space-separated list from the following: 
+					// underline, stippled_underline, squiggly_underline, 
+					// foreground
+			// "bracket_contents_foreground": "var(caret)",
+		// TAGS
+			//"tags_options": "stippled_underline",
+				// accepts a space-separated list from the following: 
+				// underline, stippled_underline, squiggly_underline, 
+				// foreground
+			// "tags_foreground": "var(caret)",
+		// SHADOWS
+		//"shadow": "white",
+		//"shadow_width": "0",
+	},
+	"rules": [
+		{	"scope": "SingleLineComment.js, MultiLineComment.js",
+			"foreground": "var(comment)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": ""  // bold, italic or both 
+		},
+		{	"scope": "Declaration.js",
+			"foreground": "orangered",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "Statement.js",
+			"foreground": "red",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "SwitchStatement.js",
+			"foreground": "var(SwitchStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "TryStatement.js",
+			"foreground": "var(TryStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "BlockStatement.js",
+			"foreground": "var(BlockStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "IfStatement.js",
+			"foreground": "var(IfStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "VariableStatement.js",
+			"foreground": "yellow",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "ThrowStatement.js",
+			"foreground": "var(ThrowStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "DebuggerStatement.js",
+			"foreground": "var(DebuggerStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "LabelledStatement.js",
+			"foreground": "var(LabelledStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "ContinueStatement.js",
+			"foreground": "var(ContinueStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "BreakStatement.js",
+			"foreground": "var(BreakStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "ReturnStatement.js",
+			"foreground": "var(ReturnStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "WhileStatement.js",
+			"foreground": "var(WhileStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "ForStatement.js",
+			"foreground": "var(ForStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "WithStatement.js",
+			"foreground": "var(WithStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "IfStatement.js",
+			"foreground": "var(IfStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "DoStatement",
+			"foreground": "var(DoStatement)",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		},
+		{	"scope": "redBg",
+			"foreground": "",
+			"background": "red",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": ""  // bold, italic or both 
+		},
+		{	"scope": "orangeBg",
+			"foreground": "",
+			"background": "orange",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": ""  // bold, italic or both 
+		},
+		{	"scope": "FunctionDeclaration.js, GeneratorDeclaration.js, AsyncFunctionDeclaration.js, AsyncGeneratorDeclaration.js, ClassDeclaration.js, LetDeclaration.js, ConstDeclaration.js",
+			"foreground": "red",
+			"background": "",
+			"foreground_adjust": "",
+			"selection_foreground": "",
+			"font_style": "bold"  // bold, italic or both 
+		}
+	]
+}

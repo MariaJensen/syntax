@@ -1,0 +1,65 @@
+%YAML 1.2
+---
+
+file_extensions:
+    - js
+
+scope: source.js
+
+hidden: true
+
+variables: 
+    LineTerminator: '[\x{000A}\x{000D}\x{2028}\x{2029}]'
+    LineTerminatorSequence: '(\x{000A}|\x{000D}(?!\x{000A})|\x{2028}|\x{2029}|\x{000D}\x{000A})'
+    SingleEscapeCharacter: '[\x{0027}\x{0022}\\bfnrtv]'
+    NonEscapeCharacter: '[^0-9xu\x{000A}\x{000D}\x{2028}\x{2029}]'
+
+contexts: 
+    main:
+        - match: '`'
+          push: TemplateCharacters
+
+    TemplateCharacters:
+        - meta_scope: Template.js
+
+        - match: '\\{{SingleEscapeCharacter}}'
+          scope: Template.SingleEscapeCharacter.js
+
+        - match: '\\0(?![0-9])'
+          scope: Template.ZeroEscape.js
+
+        - match: '\\x\h{2}'
+          scope: Template.HexEscapeSequence.js
+
+        - match: '\\u\h{4}|\\u\{\h{1,}\}'
+          scope: Template.UnicodeEscapeSequence.js
+
+        - match: '\\{{LineTerminatorSequence}}'
+          scope: Template.LineContinuation.js
+
+        - match: '{{LineTerminatorSequence}}'
+          scope: Template.LineTerminatorSequence.js
+
+        - match: '{{LineTerminator}}'
+          pop: true
+
+        - match: '`'
+          pop: true
+
+        - match: '\$\{'
+          set: Embedded
+
+    Embedded: 
+        # TODO: include the same contexts as in simple.sublime-syntax except for template.sublime-syntax
+        - include: Packages/KISS/comment.sublime-syntax
+        - include: Packages/KISS/numericliteral.sublime-syntax
+        - include: Packages/KISS/stringliteral.sublime-syntax
+
+        - match: '\}'
+          set: TemplateCharacters
+
+        - match: '`'
+          push: TemplateCharacters
+
+       
+    

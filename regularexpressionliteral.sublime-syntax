@@ -1,0 +1,20 @@
+%YAML 1.2
+---
+
+file_extensions:
+    - js
+
+scope: source.js
+
+hidden: true
+
+variables: 
+    RegualarExpressionFlags: '[gimsuy]'
+
+contexts: 
+    main:
+        - match: '/[^/]{1,}/[gimsuy]{0,}'
+          scope: RegularExpressionLiteral.js
+
+
+

@@ -1,0 +1,83 @@
+%YAML 1.2
+---
+
+file_extensions:
+    - js
+
+scope: source.js
+
+hidden: true
+
+variables: 
+    LineTerminator: '[\x{000A}\x{000D}\x{2028}\x{2029}]'
+    LineTerminatorSequence: '\x{000A}|\x{000D}(?!\x{000A})|\x{2028}|\x{2029}|\x{000D}\x{000A}'
+    SingleEscapeCharacter: '[\x{0027}\x{0022}\\bfnrtv]'
+
+contexts: 
+    main:
+        - match: '\x{0022}' # Double quote
+          push: DoubleStringCharacters
+        - match: '\x{0027}' # Single quote
+          push: SingleStringCharacters
+
+    SingleStringCharacters: 
+        - meta_scope: StringLiteral.js
+        
+        - match: '[\x{0028}\x{0029}]' # Line separator, paragraph separator
+          scope: StringLiteral.Separator.js
+
+        - match: '\\{{SingleEscapeCharacter}}'
+          scope: StringLiteral.SingleEscapeCharacter.js
+
+        - match: '\\0(?![0-9])'
+          scope: StringLiteral.ZeroEscape.js
+
+        - match: '\\x\h{2}'
+          scope: StringLiteral.HexEscapeSequence.js
+
+        - match: '\\u\h{4}|\\u\{\h{1,}\}'
+          scope: StringLiteral.UnicodeEscapeSequence.js
+
+        - match: '\\{{LineTerminatorSequence}}'
+          scope: StringLiteral.LineTerminatorSequence.js
+
+        # - match: '\\[0-9]|\\x|\\u|\\{{LineTerminator}}'
+        #   pop: true
+
+        # - match: '\\'
+        #   pop: true
+
+        - match: '\x{0027}|{{LineTerminator}}'
+          pop: true
+
+
+
+    DoubleStringCharacters: 
+        - meta_scope: StringLiteral.js
+        
+        - match: '[\x{0028}\x{0029}]' # Line separator, paragraph separator
+          scope: StringLiteral.Separator.js
+
+        - match: '\\{{SingleEscapeCharacter}}'
+          scope: StringLiteral.SingleEscapeCharacter.js
+
+        - match: '\\0(?![0-9])'
+          scope: StringLiteral.ZeroEscape.js
+
+        - match: '\\x\h{2}'
+          scope: StringLiteral.HexEscapeSequence.js
+
+        - match: '\\u\h{4}|\\u\{\h{1,}\}'
+          scope: StringLiteral.UnicodeEscapeSequence.js
+
+        - match: '\\{{LineTerminatorSequence}}'
+          scope: StringLiteral.LineTerminatorSequence.js
+
+        # - match: '\\[0-9]|\\x|\\u|\\{{LineTerminator}}'
+        #   pop: true
+
+        # - match: '\\'
+        #   pop: true
+
+        - match: '\x{0022}|{{LineTerminator}}'
+          pop: true

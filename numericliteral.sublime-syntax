@@ -1,0 +1,31 @@
+%YAML 1.2
+---
+
+file_extensions:
+    - js
+
+scope: source.js
+
+hidden: true
+
+variables: 
+    DecimalIntegerLiteral: '(0(?![0-9])|[1-9][0-9]{0,})'
+    ExponentPart: '((e|E)((\+|-){0,1})[0-9]{1,})'
+    NumericLiteral: '0(?:b|B)[01]{1,}|0(?:o|O)[0-7]{1,}|0(?:x|X)\h{1,}|{{DecimalIntegerLiteral}}\.(?:(?:[0-9]{1,}){0,1})(?:{{ExponentPart}}{0,1})|\.(?:[0-9]{1,})(?:{{ExponentPart}}{0,1})|{{DecimalIntegerLiteral}}(?:{{ExponentPart}}{0,1})'
+
+contexts: 
+    main:
+        - match: '0(b|B)[01]{1,}'
+          scope: NumericLiteral.js
+        - match: '0(o|O)[0-7]{1,}'
+          scope: NumericLiteral.js
+        - match: '0(x|X)\h{1,}'
+          scope: NumericLiteral.js
+        - match: '{{DecimalIntegerLiteral}}\.(([0-9]{1,}){0,1})({{ExponentPart}}{0,1})'
+          scope: NumericLiteral.js
+        - match: '\.([0-9]{1,})({{ExponentPart}}{0,1})'
+          scope: NumericLiteral.js
+        - match: '{{DecimalIntegerLiteral}}({{ExponentPart}}{0,1})'
+          scope: NumericLiteral.js
+         
+   
